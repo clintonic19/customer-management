@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-between flex wrap flex-md nowrap align-items-center pt-3 pb-3 mb-3 border-bottom">
+    <h1 class="h2">Search Customer</h1>
+
+    <div class="btn-toolbar mb-2 mb-md0">
+        <div class="btn-group me-2">
+            <a href="#" class="btn btn-sm btn-outline-secondary">Share</a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+   <% if (customer != " ") { %>
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone No</th>
+                <th scope="col" class="text-end">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>  
+            <!-- DISPLAY DATA FROM DATABASE -->
+            <% customer.forEach(row => { %>
+
+                <tr class="align-middle">
+                    <td><%= row.first_name %></td>                       
+                    <td><%= row.last_name %></td>                       
+                    <td><%= row.email %></td>                       
+                    <td><%= row.phone_no %></td> 
+
+                    <!-- DISPLAY VIEW, EDIT, PUT AND DELETE CUSTOMERS-->
+
+                    <td class="text-end">
+                        <div class="d-flex flex-row justify-content-end gap-2">
+                            <a href="/viewCustomer/<%= row._id %>" type="button" class="btn btn-primary btn-small"> <i class="bi bi-eye"></i> View</a>
+                            
+                            <a href="/editCustomer/<%= row._id %>" type="button" class="btn btn-warning btn-small"> <i class="bi bi-pencil-fill"></i> Edit</a>
+                            <!-- <a href="/" type="button" class="btn btn-danger btn-small"> <i class="bi bi-person-x"></i> Delete</a> -->
+                        
+                                                        
+                        </form>
+                        </div>
+                    </td>
+                  </tr>
+            <% }) %>
+          </tbody>
+
+    </table>
+    
+   <% } else {%>
+    <!-- <div class="row py-md-5 text-center justify-content-center"> -->
+        <h1>                        
+            RESULT NOT FOUND.
+        </h1>
+    <!-- </div> -->
+       
+   <% } %>
+</div>

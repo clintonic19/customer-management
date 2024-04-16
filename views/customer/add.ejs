@@ -1,0 +1,44 @@
+
+  <div class="d-flex justify-content-between flex wrap flex-md nowrap align-items-center pt-3 pb-3 mb-3 border-bottom">
+    <h1 class="h2">ADD NEW CUSTOMER</h1>
+
+    <!-- <div class="btn-toolbar mb-2 mb-md0">
+        <div class="btn-group me-2">
+            <button class="btn btn-sm btn-outline-secondary">?</button>
+        </div>
+    </div> -->
+</div>
+
+<!-- BOOSTRAP BREADCRUMB ITEM  -->
+
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">New Customer</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col text-end fw-lighter">
+            <b>UserId</b>
+
+        </div>
+    </div>
+</div>
+
+
+  <!-- ADD NEW CUSTOMER FORM -->
+
+<form class="row g-3 needs-validation" method="POST" action="/add" validate>
+
+ 
+  <%- include('../partials/customerForm.ejs') %>
+
+    <div class="col-12 d-grid">
+      <button class="btn btn-primary" type="submit" validate >ADD CUSTOMER</button>
+     </div>
+</form>
+
+

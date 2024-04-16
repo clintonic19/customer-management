@@ -1,0 +1,89 @@
+
+<div class="d-flex justify-content-between flex wrap flex-md nowrap align-items-center pt-3 pb-3 mb-3 border-bottom">
+    <h1 class="h2">Update Details of <%= edit_customer.first_name %>  <%= edit_customer.last_name %></h1>
+
+    <!-- <div class="btn-toolbar mb-2 mb-md0">
+        <div class="btn-group me-2">
+            <button class="btn btn-sm btn-outline-secondary">?</button>
+        </div>
+    </div> -->
+</div>
+
+<!-- BOOSTRAP BREADCRUMB ITEM  -->
+
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><%= edit_customer.first_name %></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col text-end fw-lighter">
+        <!-- <div class="form-group mb-4"> -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"  id="deleteButton">Delete</button>
+        </div>
+    </div>
+</div>
+  <!-- EDIT AND UPDATE CUSTOMER FORM -->
+<form class="row g-3 needs-validation" method="POST" action="/editCustomer/<%= edit_customer._id %>?_method=PUT" validate>
+
+  <%- include('../partials/updateForm.ejs') %>
+
+    <div class="col-12 d-grid">
+      <button class="btn btn-primary" type="submit" validate >UPDATE CUSTOMER</button>
+     </div>
+</form>
+
+<!-- DISMISSIBLE MODAL -->
+<!-- <div class="modal fade" tabindex ="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <div class="modal-title">DELETE <b><%#  %><%= edit_customer.first_name %></b></div>
+            <button type="button" class=" btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+            <div class="modal-body">
+                <p>
+                    This Action will Delete <b><%#  %><%= edit_customer.first_name %></b> <b> <%#  %><%= edit_customer.last_name%></b> <br>
+                    Are you Sure?
+                </p>  
+            </div>
+            
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               
+                <form action="/editCustomer/<%#  %><%=edit_customer._id%>?_method=DELETE" method="POST" class="position-relative"> 
+                    <button type="submit" class="btn btn-danger">Yes, Delete Customer</button>
+                </form>
+            </div>
+    </div>
+</div> -->
+
+<!-- BOOSTRAP MODAL -->
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> DELETE <b><%= edit_customer.first_name %> </h5> 
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"> </button>
+        </div>
+        <div class="modal-body">
+            <p>
+                This Action will Delete <b> <%= edit_customer.first_name %> </b> <b> <%= edit_customer.last_name%> </b> <br><br>
+                Are you Sure?
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form action="/editCustomer/<%=edit_customer._id%>?_method=DELETE" method="POST" class="position-relative"> 
+            <button type="submit" class="btn btn-danger">Yes, Delete Customer</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

@@ -1,0 +1,102 @@
+
+<div class="d-flex justify-content-between flex wrap flex-md nowrap align-items-center pt-3 pb-3 mb-3 border-bottom">
+    <h1 class="h2">Customers Dashboard</h1>
+
+    <div class="btn-toolbar mb-2 mb-md0">
+        <div class="btn-group me-2">
+            <a href="/add" class="btn btn-sm btn-outline-secondary">+ Add Customer</a>
+        </div>
+    </div>
+</div>
+
+<!-- DISMISSIBLE ALERT MESSAGES -->
+    <% messages.forEach(row => { %>
+        <div class="alert alert-success alert-dismissible fade show">
+            <%= row %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" ></button>
+        </div>
+    <% }) %>
+
+
+<!-- DISPLAY CUSTOMERS USERS IN A TABLE -->
+    <div class="table-responsive">
+        <table class="table table-stripe table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone No</th>
+                    <th scope="col" class="text-end">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>  
+                <!-- DISPLAY DATA FROM DATABASE -->
+                <% display.forEach(row => { %>
+
+                    <tr class="align-middle">
+                        <td><%= row.first_name %></td>                       
+                        <td><%= row.last_name %></td>                       
+                        <td><%= row.email %></td>                       
+                        <td><%= row.phone_no %></td> 
+
+                        <!-- DISPLAY VIEW, EDIT, PUT AND DELETE CUSTOMERS-->
+
+                        <td class="text-end">
+                            <div class="d-flex flex-row justify-content-end gap-2">
+                                <a href="/viewCustomer/<%= row._id %>" type="button" class="btn btn-primary btn-small"> <i class="bi bi-eye"></i> View</a>
+                                
+                                <a href="/editCustomer/<%= row._id %>" type="button" class="btn btn-warning btn-small"> <i class="bi bi-pencil-fill"></i> Edit</a>
+                                <!-- <a href="/" type="button" class="btn btn-danger btn-small"> <i class="bi bi-person-x"></i> Delete</a> -->
+                            
+                                <form action="/editCustomer/<%= row._id %>?_method=DELETE" method="POST" class="position-relative ">
+                                <button type="submit" class="btn btn-danger btn-small"> <i class="bi bi-person-x"></i>Delete</button>                            
+                            </form>
+                            </div>
+                        </td>
+                      </tr>
+                <% }) %>
+              </tbody>
+        </table>
+    </div>
+
+<!-- PAGINATION BOOSTRAP -->
+<% if (display.length > 0) { %>
+    <nav aria-label="Dashboard Pagination">
+        <ul class="pagination justify-content-end mt-3">
+            
+            <% if (current == 1) { %>
+                <li class="page-item disabled"><a href="#" class="page-link">First</a></li>  
+            <% } else { %>
+            <li class="page-item"><a href="/?page=1" class="page-link">First</a></li> 
+            <% } %> 
+
+            <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+
+            <% if (i !== 1) { %>
+                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>                  
+            <% } %>
+
+            <% for(; i <= (Number(current) + 4) && i <= pages; i++ ) { %>
+             <% if (i == current) { %>
+                <li class="page-item disabled"><a href="#" class="page-link"><%= i %></a></li>                  
+             <% } else { %>
+                <li class="page-item"><a href="/?page=<%= i %>" class="page-link"><%= i %></a></li> 
+            <% } %>
+                
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                    <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                <% } %> 
+            <% } %>
+
+            <% if (current == pages) { %>
+                <li class="page-item disabled"><a href="#" class="page-link">Last</a></li>  
+            <% } else { %>
+            <li class="page-item"><a href="/?page=<%= pages %>" class="page-link">Last</a></li> 
+            <% } %>
+
+        </ul>
+    </nav>     
+<% } %>
+
